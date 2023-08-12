@@ -1,0 +1,41 @@
+CREATE DATABASE ELECTROTECH;
+
+CREATE TABLE Clientes(
+idCliente INT PRIMARY KEY,
+nombre VARCHAR(250),
+direccion VARCHAR(250),
+telefono VARCHAR(250),
+correoElectronico(250)
+);
+
+CREATE TABLE Categorias(
+idCategoria INT PRIMARY KEY,
+nombreCategoria VARCHAR(250)
+); 
+
+CREATE TABLE Productos(
+idProducto INT PRIMARY KEY,
+nombreProducto VARCHAR(250),
+descripcion VARCHAR(250),
+precioUnitario INT,
+idCategoria INT,
+FOREIGN KEY (idCategoria) REFERENCES Categorias(idCategoria)
+);
+
+CREATE TABLE Ventas(
+idVenta INT PRIMARY KEY,
+fechaVenta DATE,
+idCliente INT,
+FOREIGN KEY (idCliente) REFERENCES Clientes(idCliente)
+);
+
+CREATE TABLE DetallesVentas(
+idDetalleVenta INT PRIMARY KEY,
+idVenta INT,
+FOREIGN KEY (idVenta) REFERENCES Ventas(idVentas),
+idProducto INT,
+FOREIGN KEY (idProducto) REFERENCES Productos(idProducto) 
+cantidad INT,
+subtotal INT
+);
+
